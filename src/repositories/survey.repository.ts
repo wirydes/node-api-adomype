@@ -56,7 +56,7 @@ export class SurveyRepository implements ISurveyRepository {
     }
 
     bindSurveyToSurveyAnswerModel(result): SurveyAnswerModel {
-        let model = new SurveyDropDownModel();
+        let model = new SurveyAnswerModel();
         
         return model;
     }
