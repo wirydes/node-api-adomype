@@ -1,4 +1,4 @@
-import { DataConfig } from '../config/data.config';
+import { DataConfig } from '../data.config';
 import * as mysql from 'mysql';
 
 export class DbContext {
