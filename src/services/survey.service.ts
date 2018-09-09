@@ -1,24 +1,27 @@
-import { ISurveyService } from "./isurvey.service";
-import { ISurveyRepository } from "../repositories/isurvey.repository";
-import { SurveyRepository } from "../repositories/survey.repository";
-import { SurveyDropDownModel } from "../shared/models/survey.dropdown.model";
-import { ChartConfigModel } from "../shared/models/chart.config.model";
+import { SurveyRepository } from '../repositories/survey.repository';
+import { SurveyDropDownModel } from '../shared/models/survey.dropdown.model';
+import { ChartConfigModel } from '../shared/models/chart.config.model';
+import { rejects } from 'assert';
 
-export class SurveyService implements ISurveyService {
-    private surveyRepository: ISurveyRepository
-    
-    constructor() {
-        this.surveyRepository = new SurveyRepository();
-    }
-    
-    getSurveysDropDown(): SurveyDropDownModel[] {
+export class SurveyService {
+    private surveyRepository: SurveyRepository = new SurveyRepository();
+
+    getSurveysDropDown(): Promise<SurveyDropDownModel[]> {
         return this.surveyRepository.getSurveysDropDown();
     }
 
-    getSurveyAnswers(id: number): ChartConfigModel {
-        const surveyAnswers = this.surveyRepository.getSurveyAnswers(id);
+    getSurveyAnswers(id: number): Promise<ChartConfigModel> {
         let model = new ChartConfigModel();
+        let promise = new Promise<ChartConfigModel>((resolve, rejects) => {
+            this.surveyRepository.getSurveyAnswers(id)
+            .then((survey) => {
+                resolve(model);
+            })
+            .catch((err) => {
+                rejects(err);
+            });
 
-        return model;
+        });
+        return promise;
     }
 }
