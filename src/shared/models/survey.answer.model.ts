@@ -45,13 +45,4 @@ export class SurveyAnswerModel {
     answer44: string;
     answer45: string;
     answer46: string;
-    answer47: string;
-    answer48: string;
-    answer49: string;
-    answer50: string;
-    answer51: string;
-    answer52: string;
-    answer53: string;
-    answer54: string;
-    answer55: string;
 }

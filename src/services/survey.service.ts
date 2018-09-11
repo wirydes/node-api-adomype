@@ -15,6 +15,7 @@ export class SurveyService {
         let promise = new Promise<ChartConfigModel>((resolve, rejects) => {
             this.surveyRepository.getSurveyAnswers(id)
             .then((survey) => {
+                // logic of the formula
                 resolve(model);
             })
             .catch((err) => {
