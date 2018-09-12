@@ -1,7 +1,7 @@
 import { SurveyDropDownModel } from '../shared/models/survey.dropdown.model';
-import { ChartConfigModel } from '../shared/models/chart.config.model';
+import { ChartsConfigModel } from '../shared/models/charts.config.model';
 
 export interface ISurveyService {
     getSurveysDropDown(): SurveyDropDownModel[];
-    getSurveyAnswers(id: number): ChartConfigModel;
+    getSurveyAnswers(id: number): ChartsConfigModel;
 }

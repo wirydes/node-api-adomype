@@ -1,7 +1,7 @@
 import { SurveyRepository } from '../repositories/survey.repository';
 import { SurveyDropDownModel } from '../shared/models/survey.dropdown.model';
-import { ChartConfigModel } from '../shared/models/chart.config.model';
-import { rejects } from 'assert';
+import { ChartsConfigModel } from '../shared/models/charts.config.model';
+import * as answersValue from '../shared/models/answer.value.model';
 
 export class SurveyService {
     private surveyRepository: SurveyRepository = new SurveyRepository();
@@ -10,9 +10,9 @@ export class SurveyService {
         return this.surveyRepository.getSurveysDropDown();
     }
 
-    getSurveyAnswers(id: number): Promise<ChartConfigModel> {
-        let model = new ChartConfigModel();
-        let promise = new Promise<ChartConfigModel>((resolve, rejects) => {
+    getSurveyAnswers(id: number): Promise<ChartsConfigModel> {
+        let model = new ChartsConfigModel();
+        let promise = new Promise<ChartsConfigModel>((resolve, rejects) => {
             this.surveyRepository.getSurveyAnswers(id)
             .then((survey) => {
                 // logic of the formula
