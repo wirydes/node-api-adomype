@@ -6,6 +6,8 @@ import { KeyProcessChartModel } from '../shared/models/key.process.chart.model';
 import { SurveyAnswerModel } from '../shared/models/survey.answer.model';
 import { MatureProfileChartModel } from '../shared/models/mature.profile.chart.model';
 import { OrganizationalMatureChartModel } from '../shared/models/organizational.mature.chart.model';
+import { StrategicProcessChartModel } from '../shared/models/strategic.process.chart.model';
+import { SupportProcessChartModel } from '../shared/models/support.process.chart.model';
 
 export class SurveyService {
     private surveyRepository: SurveyRepository = new SurveyRepository();
@@ -23,6 +25,8 @@ export class SurveyService {
                 model.keyProcessChart = this.getKeyProcessChart(surveyAnswers);
                 model.matureProfileChart = this.getMatureProfileChart(surveyAnswers);
                 model.organizationalMatureChart = this.getOrganizationalMatureChart(surveyAnswers);
+                model.strategicChart = this.getStrategicChart(surveyAnswers);
+                model.supportProcessChart = this.getSupportProcessChart(surveyAnswers);
 
                 resolve(model);
             })
@@ -49,6 +53,18 @@ export class SurveyService {
 
     private getOrganizationalMatureChart(surveyAnswers: SurveyAnswerModel): OrganizationalMatureChartModel {
         let model = new OrganizationalMatureChartModel();
+
+        return model;
+    }
+
+    private getStrategicChart(surveyAnswers: SurveyAnswerModel): StrategicProcessChartModel {
+        let model = new StrategicProcessChartModel();
+
+        return model;
+    }
+
+    private getSupportProcessChart(surveyAnswers: SurveyAnswerModel): SupportProcessChartModel {
+        let model = new SupportProcessChartModel();
 
         return model;
     }
