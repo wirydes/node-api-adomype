@@ -2,6 +2,7 @@ import { DbContext } from '../connection/db.context';
 import { SurveyDropDownModel } from '../shared/models/survey.dropdown.model';
 import { SurveyAnswerModel } from '../shared/models/survey.answer.model';
 import * as mysql from 'mysql';
+import { AnswerModel } from '../shared/models/answer.model';
 export class SurveyRepository {
 
     private context: DbContext;
@@ -75,7 +76,7 @@ export class SurveyRepository {
     bindSurveyToSurveyAnswerModel(result): SurveyAnswerModel {
         let model = new SurveyAnswerModel();
         // section 1 p1
-        model.answer1 = result['121356X33X257'];
+        model.answer1 = this.getAnswer(result['121356X33X257'], 1, 1, 1);
         model.answer2 = result['121356X33X258'];
         // section 1 p2
         model.answer3 = result['121356X33X259'];
@@ -129,5 +130,27 @@ export class SurveyRepository {
         model.answer35 = result['121356X39X290'];
 
         return model;
+    }
+
+    private getAnswer(key: string, section: number, part: number, order: number): AnswerModel {
+        let model = new AnswerModel();
+
+        model.key = key;
+        model.section = section;
+        model.part = part;
+        model.value = this.getAnswerValue(key, order);
+
+        return model;
+    }
+
+    private getAnswerValue(key: string, order: number): number {
+        switch (order) {
+            case 1:
+                break;
+            case 1:
+                break;
+        }
+
+        return 0;
     }
 }
