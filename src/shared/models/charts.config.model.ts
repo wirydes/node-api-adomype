@@ -1,10 +1,14 @@
-import { ResumeChartsModel } from './resume.charts.model';
-import { MatureLvModel } from './mature.lv.model';
-import { MaturityProfileModel } from './maturity.profile.model';
+import { KeyProcessChartModel } from './key.process.chart.model';
+import { StrategicProcessChartModel } from './strategic.process.chart.model';
+import { SupportProcessChartModel } from './support.process.chart.model';
+import { OrganizationalMatureChartModel } from './organizational.mature.chart.model';
+import { MatureProfileChartModel } from './mature.profile.chart.model';
 
 export class ChartsConfigModel {
-    resumeChart: ResumeChartsModel;
-    matureChart: MatureLvModel;
-    profileChart: MaturityProfileModel;
+    keyProcessChart: KeyProcessChartModel;
+    strategicChart: StrategicProcessChartModel;
+    supportProcessChart: SupportProcessChartModel;
+    organizationalMatureChart: OrganizationalMatureChartModel;
+    matureProfileChart: MatureProfileChartModel;
 
 }

@@ -1,4 +1,4 @@
-export class MaturityProfileModel {
+export class SupportProcessChartModel {
     organization: {
         analysis: number;
         organizationalDecisions: number;

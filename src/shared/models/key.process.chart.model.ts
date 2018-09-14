@@ -1,4 +1,4 @@
-export class ResumeChartsModel {
+export class KeyProcessChartModel {
     processPlanning: {
         label: string;
         value: number;
