@@ -34,15 +34,4 @@ export class SurveyAnswerModel {
     answer33: string;
     answer34: string;
     answer35: string;
-    answer36: string;
-    answer37: string;
-    answer38: string;
-    answer39: string;
-    answer40: string;
-    answer41: string;
-    answer42: string;
-    answer43: string;
-    answer44: string;
-    answer45: string;
-    answer46: string;
 }
