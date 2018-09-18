@@ -23,7 +23,7 @@ export class SurveyRepository {
             let data: SurveyDropDownModel[] = [];
             pool.getConnection((error, conn) => {
                 if (error) {
-                   rejects(error);
+                    rejects(error);
                 }
                 conn.query(sql, (er, rows: any[]) => {
                     conn.release();
@@ -58,7 +58,7 @@ export class SurveyRepository {
             pool.getConnection((error, conn) => {
                 if (error) {
                     rejects(error);
-                 }
+                }
                 conn.query(sql, (er, results: any) => {
                     conn.release();
                     if (er) throw rejects(er);
@@ -114,19 +114,19 @@ export class SurveyRepository {
         // section 6 p1
         model.answer25 = this.getAnswer(result['121356X38X280'], 6, 1, 25);
         model.answer26 = this.getAnswer(result['121356X38X281'], 6, 1, 26);
-       // section 6 p2
+        // section 6 p2
         model.answer27 = this.getAnswer(result['121356X38X282'], 6, 2, 27);
         // section 7 p1
         model.answer28 = this.getAnswer(result['121356X39X283'], 7, 1, 28);
         model.answer29 = this.getAnswer(result['121356X39X284'], 7, 1, 29);
-        model.answer30 = result['121356X39X285'];
+        model.answer30 = this.getAnswer(result['121356X39X285'], 7, 1, 30);
         // section 7 p2
-        model.answer31 = result['121356X39X286'];
-        model.answer32 = result['121356X39X287'];
+        model.answer31 = this.getAnswer(result['121356X39X286'], 7, 2, 31);
+        model.answer32 = this.getAnswer(result['121356X39X287'], 7, 2, 32);
         // section 7 p3
-        model.answer33 = result['121356X39X288'];
-        model.answer34 = result['121356X39X289'];
-        model.answer35 = result['121356X39X290'];
+        model.answer33 = this.getAnswer(result['121356X39X288'], 7, 3, 33);
+        model.answer34 = this.getAnswer(result['121356X39X289'], 7, 3, 34);
+        model.answer35 = this.getAnswer(result['121356X39X290'], 7, 3, 35);
 
         return model;
     }
@@ -142,12 +142,446 @@ export class SurveyRepository {
         return model;
     }
 
+    // todo find another way to do this.....
     private getAnswerValue(key: string, order: number): number {
         switch (order) {
             case 1:
-                break;
-            case 1:
-                break;
+                switch (key) {
+                    case 'A2':
+                        return 32;
+                    case 'A3':
+                        return 15;
+                    case 'A4':
+                        return 84;
+                    case 'A5':
+                        return 70;
+                    case 'A6':
+                        return 61;
+                    case 'A7':
+                        return 45;
+                    case 'A8':
+                        return 100;
+                    case 'A9':
+                        return 90;
+                }
+            // orange green yellow red
+            case 2:
+            case 22:
+                switch (key) {
+                    case 'A2':
+                        return 61;
+                    case 'A3':
+                        return 45;
+                    case 'A4':
+                        return 100;
+                    case 'A5':
+                        return 90;
+                    case 'A6':
+                        return 84;
+                    case 'A7':
+                        return 70;
+                    case 'A8':
+                        return 32;
+                    case 'A9':
+                        return 15;
+                }
+            case 3:
+                switch (key) {
+                    case 'A2':
+                        return 100;
+                    case 'A3':
+                        return 90;
+                    case 'A4':
+                        return 61;
+                    case 'A5':
+                        return 45;
+                    case 'A6':
+                        return 32;
+                    case 'A7':
+                        return 15;
+                    case 'A8':
+                        return 84;
+                    case 'A9':
+                        return 70;
+                }
+            // orange yellow green red
+            case 4:
+            case 6:
+            case 19:
+            case 20:
+                switch (key) {
+                    case 'A2':
+                        return 61;
+                    case 'A3':
+                        return 45;
+                    case 'A4':
+                        return 84;
+                    case 'A5':
+                        return 70;
+                    case 'A6':
+                        return 100;
+                    case 'A7':
+                        return 90;
+                    case 'A8':
+                        return 32;
+                    case 'A9':
+                        return 15;
+                }
+            // orange red green yellow
+            case 5:
+            case 12:
+            case 35:
+                switch (key) {
+                    case 'A2':
+                        return 61;
+                    case 'A3':
+                        return 45;
+                    case 'A4':
+                        return 32;
+                    case 'A5':
+                        return 15;
+                    case 'A6':
+                        return 100;
+                    case 'A7':
+                        return 90;
+                    case 'A8':
+                        return 84;
+                    case 'A9':
+                        return 70;
+                }
+            // orange green red yellow
+            case 7:
+            case 21:
+                switch (key) {
+                    case 'A2':
+                        return 61;
+                    case 'A3':
+                        return 45;
+                    case 'A4':
+                        return 100;
+                    case 'A5':
+                        return 90;
+                    case 'A6':
+                        return 32;
+                    case 'A7':
+                        return 15;
+                    case 'A8':
+                        return 84;
+                    case 'A9':
+                        return 70;
+                }
+                // green yellow orange red
+            case 8:
+            case 9:
+            case 11:
+            case 23:
+                switch (key) {
+                    case 'A2':
+                        return 100;
+                    case 'A3':
+                        return 90;
+                    case 'A4':
+                        return 84;
+                    case 'A5':
+                        return 70;
+                    case 'A6':
+                        return 61;
+                    case 'A7':
+                        return 45;
+                    case 'A8':
+                        return 32;
+                    case 'A9':
+                        return 15;
+                }
+            case 10:
+                switch (key) {
+                    case 'A2':
+                        return 84;
+                    case 'A3':
+                        return 70;
+                    case 'A4':
+                        return 61;
+                    case 'A5':
+                        return 45;
+                    case 'A6':
+                        return 32;
+                    case 'A7':
+                        return 15;
+                    case 'A8':
+                        return 100;
+                    case 'A9':
+                        return 90;
+                }
+            // red orange green yellow
+            case 13:
+            case 16:
+            case 24:
+            case 26:
+                switch (key) {
+                    case 'A2':
+                        return 32;
+                    case 'A3':
+                        return 15;
+                    case 'A4':
+                        return 61;
+                    case 'A5':
+                        return 45;
+                    case 'A6':
+                        return 100;
+                    case 'A7':
+                        return 90;
+                    case 'A8':
+                        return 84;
+                    case 'A9':
+                        return 70;
+                }
+            case 14:
+                switch (key) {
+                    case 'A2':
+                        return 84;
+                    case 'A3':
+                        return 70;
+                    case 'A4':
+                        return 61;
+                    case 'A5':
+                        return 45;
+                    case 'A6':
+                        return 32;
+                    case 'A7':
+                        return 15;
+                    case 'A8':
+                        return 100;
+                    case 'A9':
+                        return 90;
+                }
+            case 15:
+                switch (key) {
+                    case 'A2':
+                        return 84;
+                    case 'A3':
+                        return 70;
+                    case 'A4':
+                        return 32;
+                    case 'A5':
+                        return 15;
+                    case 'A6':
+                        return 61;
+                    case 'A7':
+                        return 45;
+                    case 'A8':
+                        return 100;
+                    case 'A9':
+                        return 90;
+                }
+            case 17:
+                switch (key) {
+                    case 'A2':
+                        return 100;
+                    case 'A3':
+                        return 90;
+                    case 'A4':
+                        return 61;
+                    case 'A5':
+                        return 45;
+                    case 'A6':
+                        return 84;
+                    case 'A7':
+                        return 70;
+                    case 'A8':
+                        return 32;
+                    case 'A9':
+                        return 15;
+                }
+            case 18:
+                switch (key) {
+                    case 'A2':
+                        return 100;
+                    case 'A3':
+                        return 90;
+                    case 'A4':
+                        return 61;
+                    case 'A5':
+                        return 45;
+                    case 'A6':
+                        return 32;
+                    case 'A7':
+                        return 15;
+                    case 'A8':
+                        return 84;
+                    case 'A9':
+                        return 70;
+                }
+            case 25:
+                switch (key) {
+                    case 'A2':
+                        return 100;
+                    case 'A3':
+                        return 90;
+                    case 'A4':
+                        return 32;
+                    case 'A5':
+                        return 15;
+                    case 'A6':
+                        return 84;
+                    case 'A7':
+                        return 70;
+                    case 'A8':
+                        return 61;
+                    case 'A9':
+                        return 45;
+                }
+            case 27:
+                switch (key) {
+                    case 'A2':
+                        return 32;
+                    case 'A3':
+                        return 15;
+                    case 'A4':
+                        return 84;
+                    case 'A5':
+                        return 70;
+                    case 'A6':
+                        return 100;
+                    case 'A7':
+                        return 90;
+                    case 'A8':
+                        return 61;
+                    case 'A9':
+                        return 45;
+                }
+            case 28:
+                switch (key) {
+                    case 'A2':
+                        return 100;
+                    case 'A3':
+                        return 90;
+                    case 'A4':
+                        return 61;
+                    case 'A5':
+                        return 45;
+                    case 'A6':
+                        return 32;
+                    case 'A7':
+                        return 15;
+                    case 'A8':
+                        return 84;
+                    case 'A9':
+                        return ;
+                }
+            case 29:
+                switch (key) {
+                    case 'A2':
+                        return 32;
+                    case 'A3':
+                        return 15;
+                    case 'A4':
+                        return 100;
+                    case 'A5':
+                        return 90;
+                    case 'A6':
+                        return 84;
+                    case 'A7':
+                        return 70;
+                    case 'A8':
+                        return 61;
+                    case 'A9':
+                        return 45;
+                }
+            case 30:
+                switch (key) {
+                    case 'A2':
+                        return 61;
+                    case 'A3':
+                        return 45;
+                    case 'A4':
+                        return 84;
+                    case 'A5':
+                        return 70;
+                    case 'A6':
+                        return 32;
+                    case 'A7':
+                        return 15;
+                    case 'A8':
+                        return 100;
+                    case 'A9':
+                        return 90;
+                }
+            case 31:
+                switch (key) {
+                    case 'A2':
+                        return 84;
+                    case 'A3':
+                        return 70;
+                    case 'A4':
+                        return 32;
+                    case 'A5':
+                        return 15;
+                    case 'A6':
+                        return 61;
+                    case 'A7':
+                        return 45;
+                    case 'A8':
+                        return 100;
+                    case 'A9':
+                        return 90;
+                }
+            case 32:
+                switch (key) {
+                    case 'A2':
+                        return 84;
+                    case 'A3':
+                        return 70;
+                    case 'A4':
+                        return 100;
+                    case 'A5':
+                        return 90;
+                    case 'A6':
+                        return 32;
+                    case 'A7':
+                        return 15;
+                    case 'A8':
+                        return 61;
+                    case 'A9':
+                        return 45;
+                }
+            case 33:
+                switch (key) {
+                    case 'A2':
+                        return 61;
+                    case 'A3':
+                        return 45;
+                    case 'A4':
+                        return 84;
+                    case 'A5':
+                        return 70;
+                    case 'A6':
+                        return 32;
+                    case 'A7':
+                        return 15;
+                    case 'A8':
+                        return 100;
+                    case 'A9':
+                        return 90;
+                }
+            case 34:
+                switch (key) {
+                    case 'A2':
+                        return 84;
+                    case 'A3':
+                        return 70;
+                    case 'A4':
+                        return 32;
+                    case 'A5':
+                        return 15;
+                    case 'A6':
+                        return 100;
+                    case 'A7':
+                        return 90;
+                    case 'A8':
+                        return 61;
+                    case 'A9':
+                        return 45;
+                }
         }
 
         return 0;
