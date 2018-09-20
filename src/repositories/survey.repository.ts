@@ -1,6 +1,5 @@
 import { DbContext } from '../connection/db.context';
 import { SurveyDropDownModel } from '../shared/models/survey.dropdown.model';
-import { SurveyAnswerModel } from '../shared/models/survey.answer.model';
 import * as mysql from 'mysql';
 import { AnswerModel } from '../shared/models/answer.model';
 
@@ -48,13 +47,13 @@ export class SurveyRepository {
         return promise;
     }
 
-    getSurveyAnswers(id: number): Promise<SurveyAnswerModel> {
+    getSurveyAnswers(id: number): Promise<AnswerModel[]> {
         const pool = this.context.getPool();
-        let data: SurveyAnswerModel;
+        let data: AnswerModel[] = [];
 
         let sql = 'SELECT * FROM ' + tableName + ' WHERE ' + tableName + '.id = ' + id;
 
-        let promise = new Promise<SurveyAnswerModel>((resolve, rejects) => {
+        let promise = new Promise<AnswerModel[]>((resolve, rejects) => {
             pool.getConnection((error, conn) => {
                 if (error) {
                     rejects(error);
@@ -72,63 +71,63 @@ export class SurveyRepository {
         return promise;
     }
 
-    bindSurveyToSurveyAnswerModel(result): SurveyAnswerModel {
-        let model = new SurveyAnswerModel();
+    bindSurveyToSurveyAnswerModel(result): AnswerModel[] {
+        let array: AnswerModel[] = [];
         // section 1 p1
-        model.answer1 = this.getAnswer(result['121356X33X257'], 1, 1, 1);
-        model.answer2 = this.getAnswer(result['121356X33X258'], 1, 1, 2);
+        array.push(this.getAnswer(result['121356X33X257'], 1, 1, 1));
+        array.push(this.getAnswer(result['121356X33X258'], 1, 1, 2));
         // section 1 p2
-        model.answer3 = this.getAnswer(result['121356X33X259'], 1, 2, 3);
-        model.answer4 = this.getAnswer(result['121356X33X260'], 1, 2, 4);
+        array.push(this.getAnswer(result['121356X33X259'], 1, 2, 3));
+        array.push(this.getAnswer(result['121356X33X260'], 1, 2, 4));
         // section 1 p3
-        model.answer5 = this.getAnswer(result['121356X33X291'], 1, 3, 5);
-        model.answer6 = this.getAnswer(result['121356X33X261'], 1, 3, 6);
+        array.push(this.getAnswer(result['121356X33X291'], 1, 3, 5));
+        array.push(this.getAnswer(result['121356X33X261'], 1, 3, 6));
         // section 2 p1
-        model.answer7 = this.getAnswer(result['121356X34X262'], 2, 1, 7);
-        model.answer8 = this.getAnswer(result['121356X34X263'], 2, 1, 8);
+        array.push(this.getAnswer(result['121356X34X262'], 2, 1, 7));
+        array.push(this.getAnswer(result['121356X34X263'], 2, 1, 8));
         // section 2 p2
-        model.answer9 = this.getAnswer(result['121356X34X264'], 2, 2, 9);
-        model.answer10 = this.getAnswer(result['121356X34X265'], 2, 2, 10);
+        array.push(this.getAnswer(result['121356X34X264'], 2, 2, 9));
+        array.push(this.getAnswer(result['121356X34X265'], 2, 2, 10));
         // section 2 p3
-        model.answer11 = this.getAnswer(result['121356X34X266'], 2, 3, 11);
-        model.answer12 = this.getAnswer(result['121356X34X267'], 2, 3, 12);
+        array.push(this.getAnswer(result['121356X34X266'], 2, 3, 11));
+        array.push(this.getAnswer(result['121356X34X267'], 2, 3, 12));
         // section 3 p1
-        model.answer13 = this.getAnswer(result['121356X35X268'], 3, 1, 13);
+        array.push(this.getAnswer(result['121356X35X268'], 3, 1, 13));
         // section 3 p2
-        model.answer14 = this.getAnswer(result['121356X35X269'], 3, 2, 14);
-        model.answer15 = this.getAnswer(result['121356X35X270'], 3, 2, 15);
+        array.push(this.getAnswer(result['121356X35X269'], 3, 2, 14));
+        array.push(this.getAnswer(result['121356X35X270'], 3, 2, 15));
         // section 3 p3
-        model.answer16 = this.getAnswer(result['121356X35X271'], 3, 3, 16);
-        model.answer17 = this.getAnswer(result['121356X35X272'], 3, 3, 17);
+        array.push(this.getAnswer(result['121356X35X271'], 3, 3, 16));
+        array.push(this.getAnswer(result['121356X35X272'], 3, 3, 17));
         // section 4 p1
-        model.answer18 = this.getAnswer(result['121356X36X273'], 4, 1, 18);
+        array.push(this.getAnswer(result['121356X36X273'], 4, 1, 18));
         // section 4 p2
-        model.answer19 = this.getAnswer(result['121356X36X274'], 4, 2, 19);
-        model.answer20 = this.getAnswer(result['121356X36X275'], 4, 2, 20);
+        array.push(this.getAnswer(result['121356X36X274'], 4, 2, 19));
+        array.push(this.getAnswer(result['121356X36X275'], 4, 2, 20));
         // section 5 p1
-        model.answer21 = this.getAnswer(result['121356X37X276'], 5, 1, 21);
-        model.answer22 = this.getAnswer(result['121356X37X277'], 5, 1, 22);
+        array.push(this.getAnswer(result['121356X37X276'], 5, 1, 21));
+        array.push(this.getAnswer(result['121356X37X277'], 5, 1, 22));
         // section 5 p2
-        model.answer23 = this.getAnswer(result['121356X37X278'], 5, 2, 23);
-        model.answer24 = this.getAnswer(result['121356X37X279'], 5, 2, 24);
+        array.push(this.getAnswer(result['121356X37X278'], 5, 2, 23));
+        array.push(this.getAnswer(result['121356X37X279'], 5, 2, 24));
         // section 6 p1
-        model.answer25 = this.getAnswer(result['121356X38X280'], 6, 1, 25);
-        model.answer26 = this.getAnswer(result['121356X38X281'], 6, 1, 26);
+        array.push(this.getAnswer(result['121356X38X280'], 6, 1, 25));
+        array.push(this.getAnswer(result['121356X38X281'], 6, 1, 26));
         // section 6 p2
-        model.answer27 = this.getAnswer(result['121356X38X282'], 6, 2, 27);
+        array.push(this.getAnswer(result['121356X38X282'], 6, 2, 27));
         // section 7 p1
-        model.answer28 = this.getAnswer(result['121356X39X283'], 7, 1, 28);
-        model.answer29 = this.getAnswer(result['121356X39X284'], 7, 1, 29);
-        model.answer30 = this.getAnswer(result['121356X39X285'], 7, 1, 30);
+        array.push(this.getAnswer(result['121356X39X283'], 7, 1, 28));
+        array.push(this.getAnswer(result['121356X39X284'], 7, 1, 29));
+        array.push(this.getAnswer(result['121356X39X285'], 7, 1, 30));
         // section 7 p2
-        model.answer31 = this.getAnswer(result['121356X39X286'], 7, 2, 31);
-        model.answer32 = this.getAnswer(result['121356X39X287'], 7, 2, 32);
+        array.push(this.getAnswer(result['121356X39X286'], 7, 2, 31));
+        array.push(this.getAnswer(result['121356X39X287'], 7, 2, 32));
         // section 7 p3
-        model.answer33 = this.getAnswer(result['121356X39X288'], 7, 3, 33);
-        model.answer34 = this.getAnswer(result['121356X39X289'], 7, 3, 34);
-        model.answer35 = this.getAnswer(result['121356X39X290'], 7, 3, 35);
+        array.push(this.getAnswer(result['121356X39X288'], 7, 3, 33));
+        array.push(this.getAnswer(result['121356X39X289'], 7, 3, 34));
+        array.push(this.getAnswer(result['121356X39X290'], 7, 4, 35));
 
-        return model;
+        return array;
     }
 
     private getAnswer(key: string, section: number, part: number, order: number): AnswerModel {
@@ -142,6 +141,26 @@ export class SurveyRepository {
         return model;
     }
 
+    private orangeGreenYellowRed(key: string): number {
+        switch (key) {
+            case 'A2':
+                return 61;
+            case 'A3':
+                return 45;
+            case 'A4':
+                return 100;
+            case 'A5':
+                return 90;
+            case 'A6':
+                return 84;
+            case 'A7':
+                return 70;
+            case 'A8':
+                return 32;
+            case 'A9':
+                return 15;
+        }
+    }
     // todo find another way to do this.....
     private getAnswerValue(key: string, order: number): number {
         switch (order) {
@@ -167,24 +186,7 @@ export class SurveyRepository {
             // orange green yellow red
             case 2:
             case 22:
-                switch (key) {
-                    case 'A2':
-                        return 61;
-                    case 'A3':
-                        return 45;
-                    case 'A4':
-                        return 100;
-                    case 'A5':
-                        return 90;
-                    case 'A6':
-                        return 84;
-                    case 'A7':
-                        return 70;
-                    case 'A8':
-                        return 32;
-                    case 'A9':
-                        return 15;
-                }
+                return this.orangeGreenYellowRed(key);
             case 3:
                 switch (key) {
                     case 'A2':
