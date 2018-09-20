@@ -1,13 +1,8 @@
-export class SupportProcessChartModel {
-    organization: {
-        analysis: number;
-        organizationalDecisions: number;
-        monitoringAncontrol: number;
-    };
+import { ChartFieldModel } from './chart.field.model';
 
-    serviceImprove: {
-        processPlanning: number;
-        processFormalization: number;
-        operativeControl: number;
-    };
+export class SupportProcessChartModel {
+    personal: ChartFieldModel;
+    equipmentAndInfrastructure: ChartFieldModel;
+    technology: ChartFieldModel;
+    financialManageMent: ChartFieldModel;
 }

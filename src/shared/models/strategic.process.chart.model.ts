@@ -1,5 +1,7 @@
+import { ChartFieldModel } from './chart.field.model';
+
 export class StrategicProcessChartModel {
-    lv: string;
-    fullFillment: number;
-    breach: number;
+    environmentAnalysis: ChartFieldModel;
+    monitoringAndControl: ChartFieldModel;
+    organizationalDesicions: ChartFieldModel;
 }
