@@ -9,7 +9,7 @@ export class AdomypeController {
                 res.json(data);
             })
             .catch(err => {
-                throw err;
+                res.status(500).send(err);
             });
     }
 
@@ -19,7 +19,7 @@ export class AdomypeController {
             res.json(data);
         })
         .catch(err => {
-            throw err;
+            res.status(500).send(err);
         });
     }
 }
