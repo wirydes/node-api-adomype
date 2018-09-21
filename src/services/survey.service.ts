@@ -24,21 +24,26 @@ export class SurveyService {
             .then((surveyAnswers) => {
                 // logic of the formula
                 // work with multiple sections
+                let section1 = this.getSection(surveyAnswers, 1);
                 let section2 = this.getSection(surveyAnswers, 2);
                 let section3 = this.getSection(surveyAnswers, 3);
                 let section4 = this.getSection(surveyAnswers, 4);
                 let section5 = this.getSection(surveyAnswers, 5);
                 let section6 = this.getSection(surveyAnswers, 6);
+                let section7 = this.getSection(surveyAnswers, 7);
+
                 model.keyProcessChart = this.getKeyProcessChart(section2, section3, section4, section5, section6);
+
+                //
                 model.matureProfileChart = this.getMatureProfileChart(surveyAnswers);
+
+                // use all answers
                 model.organizationalMatureChart = this.getOrganizationalMatureChart(surveyAnswers);
 
                 // work with section 1 answers
-                let section1 = this.getSection(surveyAnswers, 1);
                 model.strategicChart = this.getStrategicChart(section1);
 
                 // work with section 7 answers
-                let section7 = this.getSection(surveyAnswers, 7);
                 model.supportProcessChart = this.getSupportProcessChart(section7);
 
                 resolve(model);
@@ -62,9 +67,24 @@ export class SurveyService {
         section6: AnswerModel[]): KeyProcessChartModel {
             let model = new KeyProcessChartModel();
 
+            // section 2
             model.processPlanning = this.getSectionPercentageLabel(this.getPart(section2, 1), 'Planeacion de los procesos');
             model.formalizationOfProcesses = this.getSectionPercentageLabel(this.getPart(section2, 2), 'Formalizacion de procesos');
             model.monitoringAndOperationalControl = this.getSectionPercentageLabel(this.getPart(section2, 3), 'Seguimiento y control operativo');
+            // section 3
+            model.shoppingResults = this.getSectionPercentageLabel(this.getPart(section3, 1), 'Resultados de compras');
+            model.selectionOfNewSuppliers = this.getSectionPercentageLabel(this.getPart(section3, 2), 'Seleccion de nuevos proveedores');
+            model.actualSuppliersEvaluation = this.getSectionPercentageLabel(this.getPart(section3, 3), 'Evaluacion del desempeño de provedores actuales');
+            // section 4
+            model.productiveProcessResult = this.getSectionPercentageLabel(this.getPart(section4, 1), 'Resultados del proceso productivo');
+            model.deliveryOfValueProcess = this.getSectionPercentageLabel(this.getPart(section4, 2), 'Procesos para la entrega de valor');
+            // section 5
+            model.definitionOfValue = this.getSectionPercentageLabel(this.getPart(section5, 1), 'Definicoin de valor');
+            model.customerSatisfaction = this.getSectionPercentageLabel(this.getPart(section5, 2), 'Medicion de satisfaccion del cliente');
+            // section 6
+            model.inventoryControl = this.getSectionPercentageLabel(this.getPart(section6, 1), 'Control de inventarios');
+            model.storage = this.getSectionPercentageLabel(this.getPart(section6, 2), 'Almacenamiento');
+
             return model;
     }
 
@@ -77,7 +97,27 @@ export class SurveyService {
     private getOrganizationalMatureChart(answers: AnswerModel[]): OrganizationalMatureChartModel {
         let model = new OrganizationalMatureChartModel();
 
+        model.fullFinishPercentage = this.calculatePercentage(answers);
+        model.unFinishPercentage = 100 - model.fullFinishPercentage;
+        model.matureLv = this.getMatureLvLabel(model.fullFinishPercentage);
+
         return model;
+    }
+
+    private getMatureLvLabel(percentage: number): string {
+        if (percentage >= 85) {
+            return 'Maduro';
+        }
+
+        if (percentage >= 62) {
+            return 'En desarrollo';
+        }
+
+        if (percentage >= 33) {
+            return 'Artesanal';
+        }
+
+        return 'Incipiente';
     }
 
     private getStrategicChart(answers: AnswerModel[]): StrategicProcessChartModel {
