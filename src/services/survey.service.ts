@@ -9,6 +9,13 @@ import { StrategicProcessChartModel } from '../shared/models/strategic.process.c
 import { SupportProcessChartModel } from '../shared/models/support.process.chart.model';
 import { AnswerModel } from '../shared/models/answer.model';
 import { ChartFieldModel } from '../shared/models/chart.field.model';
+import { Section1Model } from '../shared/models/sections/section1.model';
+import { Section2Model } from '../shared/models/sections/section2.model';
+import { Section3Model } from '../shared/models/sections/section3.model';
+import { Section4Model } from '../shared/models/sections/section4.model';
+import { Section5Model } from '../shared/models/sections/section5.model';
+import { Section6Model } from '../shared/models/sections/section6.model';
+import { Section7Model } from '../shared/models/sections/section7.model';
 
 // section 1
 const ENVIRONMENTANALYSIS = 'Analysis de entorno';
@@ -51,7 +58,6 @@ export class SurveyService {
                 .then((surveyAnswers) => {
                     // logic of the formula
                     this.sectionsLogicProcesor(surveyAnswers, model);
-
                     resolve(model);
                 })
                 .catch((err) => {
@@ -70,6 +76,7 @@ export class SurveyService {
         let section5 = this.getSection(surveyAnswers, 5);
         let section6 = this.getSection(surveyAnswers, 6);
         let section7 = this.getSection(surveyAnswers, 7);
+
         // section 1
         let environmentAnalysis = this.getSectionPercentageLabel(this.getPart(section1, 1), ENVIRONMENTANALYSIS);
         let organizationalDesicions = this.getSectionPercentageLabel(this.getPart(section1, 2), ORGANIZATIONALDESICIONS);
@@ -115,29 +122,35 @@ export class SurveyService {
         // section 6
         model.keyProcessChart.inventoryControl = inventoryControl;
         model.keyProcessChart.storage = storage;
-
         model.matureProfileChart = new MatureProfileChartModel();
+        model.matureProfileChart.section1 = new Section1Model();
         model.matureProfileChart.section1.part1 = environmentAnalysis;
         model.matureProfileChart.section1.part2 = organizationalDesicions;
         model.matureProfileChart.section1.part3 = monitoringAndControl;
 
+        model.matureProfileChart.section2 = new Section2Model();
         model.matureProfileChart.section2.part1 = processPlanning;
         model.matureProfileChart.section2.part2 = formalizationOfProcesses;
         model.matureProfileChart.section2.part3 = monitoringAndOperationalControl;
 
+        model.matureProfileChart.section3 = new Section3Model();
         model.matureProfileChart.section3.part1 = shoppingResults;
         model.matureProfileChart.section3.part2 = selectionOfNewSuppliers;
         model.matureProfileChart.section3.part3 = actualSuppliersEvaluation;
 
+        model.matureProfileChart.section4 = new Section4Model();
         model.matureProfileChart.section4.part1 = productiveProcessResult;
         model.matureProfileChart.section4.part2 = deliveryOfValueProcess;
 
+        model.matureProfileChart.section5 = new Section5Model();
         model.matureProfileChart.section5.part1 = definitionOfValue;
         model.matureProfileChart.section5.part2 = customerSatisfaction;
 
+        model.matureProfileChart.section6 = new Section6Model();
         model.matureProfileChart.section6.part1 = inventoryControl;
         model.matureProfileChart.section6.part2 = storage;
 
+        model.matureProfileChart.section7 = new Section7Model();
         model.matureProfileChart.section7.part1 = personal;
         model.matureProfileChart.section7.part2 = equipmentAndInfrastructure;
         model.matureProfileChart.section7.part3 = technology;
@@ -214,7 +227,7 @@ export class SurveyService {
         let result: AnswerModel[] = [];
 
         result = answers.filter((item) => {
-            item.part === part;
+            return item.part === part;
         });
 
         return result;
@@ -222,9 +235,8 @@ export class SurveyService {
 
     private getSection(answers: AnswerModel[], section: number): AnswerModel[] {
         let result: AnswerModel[] = [];
-
         result = answers.filter((item) => {
-            item.section === section;
+            return item.section === section;
         });
 
         return result;

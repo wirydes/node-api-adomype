@@ -52,7 +52,6 @@ export class SurveyRepository {
         let data: AnswerModel[] = [];
 
         let sql = 'SELECT * FROM ' + tableName + ' WHERE ' + tableName + '.id = ' + id;
-
         let promise = new Promise<AnswerModel[]>((resolve, rejects) => {
             pool.getConnection((error, conn) => {
                 if (error) {
@@ -60,7 +59,9 @@ export class SurveyRepository {
                 }
                 conn.query(sql, (er, results: any) => {
                     conn.release();
-                    if (er) throw rejects(er);
+                    if (er) {
+                        rejects(er);
+                    }
 
                     data = this.bindSurveyToSurveyAnswerModel(results[0]);
                     resolve(data);
