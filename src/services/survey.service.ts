@@ -2,43 +2,42 @@ import { SurveyRepository } from '../repositories/survey.repository';
 import { SurveyDropDownModel } from '../shared/models/survey.dropdown.model';
 import { ChartsConfigModel } from '../shared/models/charts.config.model';
 import * as answersValue from '../shared/models/answer.value.model';
-import { KeyProcessChartModel } from '../shared/models/key.process.chart.model';
+import { RadarChartModel } from '../shared/models/radar.chart.model';
 import { MatureProfileChartModel } from '../shared/models/mature.profile.chart.model';
 import { OrganizationalMatureChartModel } from '../shared/models/organizational.mature.chart.model';
-import { StrategicProcessChartModel } from '../shared/models/strategic.process.chart.model';
-import { SupportProcessChartModel } from '../shared/models/support.process.chart.model';
 import { AnswerModel } from '../shared/models/answer.model';
 import { ChartFieldModel } from '../shared/models/chart.field.model';
-import { Section1Model } from '../shared/models/sections/section1.model';
-import { Section2Model } from '../shared/models/sections/section2.model';
-import { Section3Model } from '../shared/models/sections/section3.model';
-import { Section4Model } from '../shared/models/sections/section4.model';
-import { Section5Model } from '../shared/models/sections/section5.model';
-import { Section6Model } from '../shared/models/sections/section6.model';
-import { Section7Model } from '../shared/models/sections/section7.model';
+import { SectionModel } from '../shared/models/section.model';
 
 // section 1
+const NAMES1 = 'Gestionar la organizacion';
 const ENVIRONMENTANALYSIS = 'Analysis de entorno';
 const ORGANIZATIONALDESICIONS = 'Toma de decisiones a nivel organizacional';
 const MONITORINGANDCONTROL = 'Monitoreo y control a nivel organizacional';
 // section 2
+const NAMES2 = 'Planear la prestacion y mejorar el servicio';
 const PROCESSPLANNING = 'Planeacion de los procesos';
 const FORMALIZATIONOFPROCESSES = 'Formalizacion de procesos';
 const MONITORINGANDOPERATIONALCONTROL = 'Seguimiento y control operativo';
 // section 3
+const NAMES3 = 'Abastecer';
 const SHOPPINGRESULTS = 'Resultados de compras';
 const SELECTIONOFNEWSUPPLIERS = 'Seleccion de nuevos proveedores';
 const ACTUALSUPPLIERSEVALUATION = 'Evaluacion del desempeño de provedores actuales';
 // section 4
+const NAMES4 = 'Producir y entregar el servicio';
 const PRODUCTIVEPROCESSRESULT = 'Resultados del proceso productivo';
 const DELIVERYOFVALUEPROCESS = 'Procesos para la entrega de valor';
 // section 5
+const NAMES5 = 'Getionar mercadotecnia y servicio a cliente';
 const DEFINITIONOFVALUE = 'Definicoin de valor';
 const CUSTOMERSATISFACTION = 'Medicion de satisfaccion del cliente';
 // section 6
+const NAMES6 = 'Gestionar inventarios';
 const INVENTORYCONTROL = 'Control de inventarios';
 const STORAGE = 'Almacenamiento';
 // section 7
+const NAMES7 = 'Gestionar recursos';
 const PERSONAL = 'Personal';
 const EQUIPMENTANDINFRASTRUCTURE = 'Mantenimiento de infraestructura y equipo';
 const TECHNOLOGY = 'Tecnologia';
@@ -104,71 +103,79 @@ export class SurveyService {
         let technology = this.getSectionPercentageLabel(this.getPart(section7, 3), TECHNOLOGY);
         let financialManageMent = this.getSectionPercentageLabel(this.getPart(section7, 4), FINANCIALMANAGEMENT);
 
-        model.keyProcessChart = new KeyProcessChartModel();
+        model.keyProcessChart = new RadarChartModel();
         // section 2
-        model.keyProcessChart.processPlanning = processPlanning;
-        model.keyProcessChart.formalizationOfProcesses = formalizationOfProcesses;
-        model.keyProcessChart.monitoringAndOperationalControl = monitoringAndOperationalControl;
+        model.keyProcessChart.parts.push(processPlanning);
+        model.keyProcessChart.parts.push(formalizationOfProcesses);
+        model.keyProcessChart.parts.push(monitoringAndOperationalControl);
         // section 3
-        model.keyProcessChart.shoppingResults = shoppingResults;
-        model.keyProcessChart.selectionOfNewSuppliers = selectionOfNewSuppliers;
-        model.keyProcessChart.actualSuppliersEvaluation = actualSuppliersEvaluation;
+        model.keyProcessChart.parts.push(shoppingResults);
+        model.keyProcessChart.parts.push(selectionOfNewSuppliers);
+        model.keyProcessChart.parts.push(actualSuppliersEvaluation);
         // section 4
-        model.keyProcessChart.productiveProcessResult = productiveProcessResult;
-        model.keyProcessChart.deliveryOfValueProcess = deliveryOfValueProcess;
+        model.keyProcessChart.parts.push(productiveProcessResult);
+        model.keyProcessChart.parts.push(deliveryOfValueProcess);
         // section 5
-        model.keyProcessChart.definitionOfValue = definitionOfValue;
-        model.keyProcessChart.customerSatisfaction = customerSatisfaction;
+        model.keyProcessChart.parts.push(definitionOfValue);
+        model.keyProcessChart.parts.push(customerSatisfaction);
         // section 6
-        model.keyProcessChart.inventoryControl = inventoryControl;
-        model.keyProcessChart.storage = storage;
+        model.keyProcessChart.parts.push(inventoryControl);
+        model.keyProcessChart.parts.push(storage);
+
         model.matureProfileChart = new MatureProfileChartModel();
-        model.matureProfileChart.section1 = new Section1Model();
-        model.matureProfileChart.section1.part1 = environmentAnalysis;
-        model.matureProfileChart.section1.part2 = organizationalDesicions;
-        model.matureProfileChart.section1.part3 = monitoringAndControl;
+        model.matureProfileChart.section1 = new SectionModel();
+        model.matureProfileChart.section1.name = NAMES1;
+        model.matureProfileChart.section1.parts.push(environmentAnalysis);
+        model.matureProfileChart.section1.parts.push(organizationalDesicions);
+        model.matureProfileChart.section1.parts.push(monitoringAndControl);
 
-        model.matureProfileChart.section2 = new Section2Model();
-        model.matureProfileChart.section2.part1 = processPlanning;
-        model.matureProfileChart.section2.part2 = formalizationOfProcesses;
-        model.matureProfileChart.section2.part3 = monitoringAndOperationalControl;
+        model.matureProfileChart.section2 = new SectionModel();
+        model.matureProfileChart.section2.name = NAMES2;
+        model.matureProfileChart.section2.parts.push(processPlanning);
+        model.matureProfileChart.section2.parts.push(formalizationOfProcesses);
+        model.matureProfileChart.section2.parts.push(monitoringAndOperationalControl);
 
-        model.matureProfileChart.section3 = new Section3Model();
-        model.matureProfileChart.section3.part1 = shoppingResults;
-        model.matureProfileChart.section3.part2 = selectionOfNewSuppliers;
-        model.matureProfileChart.section3.part3 = actualSuppliersEvaluation;
+        model.matureProfileChart.section3 = new SectionModel();
+        model.matureProfileChart.section3.name = NAMES3;
+        model.matureProfileChart.section3.parts.push(shoppingResults);
+        model.matureProfileChart.section3.parts.push(selectionOfNewSuppliers);
+        model.matureProfileChart.section3.parts.push(actualSuppliersEvaluation);
 
-        model.matureProfileChart.section4 = new Section4Model();
-        model.matureProfileChart.section4.part1 = productiveProcessResult;
-        model.matureProfileChart.section4.part2 = deliveryOfValueProcess;
+        model.matureProfileChart.section4 = new SectionModel();
+        model.matureProfileChart.section4.name = NAMES4;
+        model.matureProfileChart.section4.parts.push(productiveProcessResult);
+        model.matureProfileChart.section4.parts.push(deliveryOfValueProcess);
 
-        model.matureProfileChart.section5 = new Section5Model();
-        model.matureProfileChart.section5.part1 = definitionOfValue;
-        model.matureProfileChart.section5.part2 = customerSatisfaction;
+        model.matureProfileChart.section5 = new SectionModel();
+        model.matureProfileChart.section5.name = NAMES5;
+        model.matureProfileChart.section5.parts.push(definitionOfValue);
+        model.matureProfileChart.section5.parts.push(customerSatisfaction);
 
-        model.matureProfileChart.section6 = new Section6Model();
-        model.matureProfileChart.section6.part1 = inventoryControl;
-        model.matureProfileChart.section6.part2 = storage;
+        model.matureProfileChart.section6 = new SectionModel();
+        model.matureProfileChart.section6.name = NAMES6;
+        model.matureProfileChart.section6.parts.push(inventoryControl);
+        model.matureProfileChart.section6.parts.push(storage);
 
-        model.matureProfileChart.section7 = new Section7Model();
-        model.matureProfileChart.section7.part1 = personal;
-        model.matureProfileChart.section7.part2 = equipmentAndInfrastructure;
-        model.matureProfileChart.section7.part3 = technology;
-        model.matureProfileChart.section7.part4 = financialManageMent;
+        model.matureProfileChart.section7 = new SectionModel();
+        model.matureProfileChart.section7.name = NAMES7;
+        model.matureProfileChart.section7.parts.push(personal);
+        model.matureProfileChart.section7.parts.push(equipmentAndInfrastructure);
+        model.matureProfileChart.section7.parts.push(technology);
+        model.matureProfileChart.section7.parts.push(financialManageMent);
 
 
         // work with section 1 answers
-        model.strategicChart = new StrategicProcessChartModel();
-        model.strategicChart.environmentAnalysis = environmentAnalysis;
-        model.strategicChart.organizationalDesicions = organizationalDesicions;
-        model.strategicChart.monitoringAndControl = monitoringAndControl;
+        model.strategicChart = new RadarChartModel();
+        model.strategicChart.parts.push(environmentAnalysis);
+        model.strategicChart.parts.push(organizationalDesicions);
+        model.strategicChart.parts.push(monitoringAndControl);
 
         // work with section 7 answers
-        model.supportProcessChart = new SupportProcessChartModel();
-        model.supportProcessChart.personal = personal;
-        model.supportProcessChart.equipmentAndInfrastructure = equipmentAndInfrastructure;
-        model.supportProcessChart.technology = technology;
-        model.supportProcessChart.financialManageMent = financialManageMent;
+        model.supportProcessChart = new RadarChartModel();
+        model.supportProcessChart.parts.push(personal);
+        model.supportProcessChart.parts.push(equipmentAndInfrastructure);
+        model.supportProcessChart.parts.push(technology);
+        model.supportProcessChart.parts.push(financialManageMent);
 
         // use all answers
         model.organizationalMatureChart = this.getOrganizationalMatureChart(surveyAnswers);
