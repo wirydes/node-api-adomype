@@ -29,7 +29,7 @@ const NAMES4 = 'Producir y entregar el servicio';
 const PRODUCTIVEPROCESSRESULT = 'Resultados del proceso productivo';
 const DELIVERYOFVALUEPROCESS = 'Procesos para la entrega de valor';
 // section 5
-const NAMES5 = 'Getionar mercadotecnia y servicio a cliente';
+const NAMES5 = 'Gestionar mercadotecnia y servicio a cliente';
 const DEFINITIONOFVALUE = 'Definicoin de valor';
 const CUSTOMERSATISFACTION = 'Medicion de satisfaccion del cliente';
 // section 6
