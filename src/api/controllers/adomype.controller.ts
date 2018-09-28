@@ -13,7 +13,7 @@ export class AdomypeController {
             });
     }
 
-    getSurveyChartInfo(req , res) {
+    getSurveyChartInfo(req , res, next) {
         new SurveyService().getSurveyAnswers(req.params.id)
         .then((data) => {
             res.json(data);
