@@ -28,9 +28,13 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "canvas": "^1.6.12",
+    "chartjs": "^0.3.24",
+    "chartjs-node": "^1.7.1",
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "jwt-simple": "^0.5.2",
-    "mysql": "^2.16.0"
+    "mysql": "^2.16.0",
+    "template-pdf-generator": "^1.0.2"
   }
 }
