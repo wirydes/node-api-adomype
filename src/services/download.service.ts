@@ -71,7 +71,7 @@ export class DownloadService {
                 // streamResult.stream // => Stream object
                 // streamResult.length // => Integer length of stream
                 // write to a file
-                return chartNode.writeImageToFile('image/png', './testimage.png');
+                return chartNode.writeImageToFile('image/png', './src/files/testimage.png');
             })
             .then(() => {
                 // chart is now written to the file path
@@ -122,7 +122,7 @@ export class DownloadService {
 
     private getPluginsOptionsConfig() {
         return {
-            afterDraw: function (chart, easing) {
+            onComplete: function (chart, easing) {
                 const self = chart.config;    /* Configuration object containing type, data, options */
                 const ctx = chart.chart.ctx;  /* Canvas context used to draw with */
                 ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
