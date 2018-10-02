@@ -4,7 +4,7 @@ export class Routes {
     private adomypeController: AdomypeController = new AdomypeController();
     private downloadController: DownloadController = new DownloadController();
     private readonly baseUrl = '/api/adomype';
-    private readonly downloadUrl = 'api/download';
+    private readonly downloadUrl = '/api/download';
 
     setRoutes(app) {
         app.use(function(req, res, next) {

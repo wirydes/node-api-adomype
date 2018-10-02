@@ -1,7 +1,7 @@
 import { SurveyService } from './survey.service';
 import * as fs from 'fs';
 import * as ChartjsNode from 'chartjs-node';
-import { Chart } from 'chartjs';
+import { Chart } from 'chart.js';
 import { RadarChartModel } from '../shared/models/radar.chart.model';
 import { MatureProfileChartModel } from '../shared/models/mature.profile.chart.model';
 import { OrganizationalMatureChartModel } from '../shared/models/organizational.mature.chart.model';
@@ -15,13 +15,13 @@ export class DownloadService {
         let promise = new Promise<any>((resolve, rejects) => {
             this.adomipeService.getSurveyAnswers(id)
                 .then((data) => {
-                    let buffer = new Buffer();
-                    fs.writeFile('fileName.png', data, 'binary', function (err) {
-                        if (err) {
-                            rejects(err);
-                        }
-                        console.log('The sheel file was written');
-                    });
+                   this.createRadarChart(data.keyProcessChart, 'test');
+                    // fs.writeFile('fileName.png', data, 'binary', function (err) {
+                    //     if (err) {
+                    //         rejects(err);
+                    //     }
+                    //     console.log('The sheel file was written');
+                    // });
 
                 }).catch((error) => {
                     rejects(error);
@@ -128,7 +128,6 @@ export class DownloadService {
                 ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
                 ctx.textAlign = 'center';
                 ctx.fillStyle = 'black';
-                console.log(this.data);
                 if (!!this.data) {
                   this.data.datasets.forEach((dataset, i) => {
                     ctx.fillStyle = 'black';
