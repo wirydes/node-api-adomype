@@ -15,7 +15,7 @@ export class DownloadService {
         let promise = new Promise<any>((resolve, rejects) => {
             this.adomipeService.getSurveyAnswers(id)
                 .then((data) => {
-                   this.createRadarChart(data.keyProcessChart, 'test');
+                   // this.createRadarChart(data.keyProcessChart, 'test');
                     // fs.writeFile('fileName.png', data, 'binary', function (err) {
                     //     if (err) {
                     //         rejects(err);

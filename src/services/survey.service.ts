@@ -103,65 +103,51 @@ export class SurveyService {
         let technology = this.getSectionPercentageLabel(this.getPart(section7, 3), TECHNOLOGY);
         let financialManageMent = this.getSectionPercentageLabel(this.getPart(section7, 4), FINANCIALMANAGEMENT);
 
-        model.keyProcessChart = new RadarChartModel();
-        // section 2
-        model.keyProcessChart.parts.push(processPlanning);
-        model.keyProcessChart.parts.push(formalizationOfProcesses);
-        model.keyProcessChart.parts.push(monitoringAndOperationalControl);
-        // section 3
-        model.keyProcessChart.parts.push(shoppingResults);
-        model.keyProcessChart.parts.push(selectionOfNewSuppliers);
-        model.keyProcessChart.parts.push(actualSuppliersEvaluation);
-        // section 4
-        model.keyProcessChart.parts.push(productiveProcessResult);
-        model.keyProcessChart.parts.push(deliveryOfValueProcess);
-        // section 5
-        model.keyProcessChart.parts.push(definitionOfValue);
-        model.keyProcessChart.parts.push(customerSatisfaction);
-        // section 6
-        model.keyProcessChart.parts.push(inventoryControl);
-        model.keyProcessChart.parts.push(storage);
+        let sectionModel1 = new SectionModel();
+        sectionModel1.name = NAMES1;
+        sectionModel1.parts.push(environmentAnalysis);
+        sectionModel1.parts.push(organizationalDesicions);
+        sectionModel1.parts.push(monitoringAndControl);
 
+        let sectionModel2 = new SectionModel();
+        sectionModel2.name = NAMES2;
+        sectionModel2.parts.push(processPlanning);
+        sectionModel2.parts.push(formalizationOfProcesses);
+        sectionModel2.parts.push(monitoringAndOperationalControl);
+
+        let sectionModel3 = new SectionModel();
+        sectionModel3.name = NAMES3;
+        sectionModel3.parts.push(shoppingResults);
+        sectionModel3.parts.push(selectionOfNewSuppliers);
+        sectionModel3.parts.push(actualSuppliersEvaluation);
+
+        let sectionModel4 = new SectionModel();
+        sectionModel4.name = NAMES4;
+        sectionModel4.parts.push(productiveProcessResult);
+        sectionModel4.parts.push(deliveryOfValueProcess);
+
+        let sectionModel5 = new SectionModel();
+        sectionModel5.name = NAMES5;
+        sectionModel5.parts.push(definitionOfValue);
+        sectionModel5.parts.push(customerSatisfaction);
+        let sectionModel6 = new SectionModel();
+        sectionModel6.name = NAMES6;
+        sectionModel6.parts.push(inventoryControl);
+        sectionModel6.parts.push(storage);
+        let sectionModel7 = new SectionModel();
+        sectionModel7.name = NAMES7;
+        sectionModel7.parts.push(personal);
+        sectionModel7.parts.push(equipmentAndInfrastructure);
+        sectionModel7.parts.push(technology);
+        sectionModel7.parts.push(financialManageMent);
         model.matureProfileChart = new MatureProfileChartModel();
-        model.matureProfileChart.section1 = new SectionModel();
-        model.matureProfileChart.section1.name = NAMES1;
-        model.matureProfileChart.section1.parts.push(environmentAnalysis);
-        model.matureProfileChart.section1.parts.push(organizationalDesicions);
-        model.matureProfileChart.section1.parts.push(monitoringAndControl);
-
-        model.matureProfileChart.section2 = new SectionModel();
-        model.matureProfileChart.section2.name = NAMES2;
-        model.matureProfileChart.section2.parts.push(processPlanning);
-        model.matureProfileChart.section2.parts.push(formalizationOfProcesses);
-        model.matureProfileChart.section2.parts.push(monitoringAndOperationalControl);
-
-        model.matureProfileChart.section3 = new SectionModel();
-        model.matureProfileChart.section3.name = NAMES3;
-        model.matureProfileChart.section3.parts.push(shoppingResults);
-        model.matureProfileChart.section3.parts.push(selectionOfNewSuppliers);
-        model.matureProfileChart.section3.parts.push(actualSuppliersEvaluation);
-
-        model.matureProfileChart.section4 = new SectionModel();
-        model.matureProfileChart.section4.name = NAMES4;
-        model.matureProfileChart.section4.parts.push(productiveProcessResult);
-        model.matureProfileChart.section4.parts.push(deliveryOfValueProcess);
-
-        model.matureProfileChart.section5 = new SectionModel();
-        model.matureProfileChart.section5.name = NAMES5;
-        model.matureProfileChart.section5.parts.push(definitionOfValue);
-        model.matureProfileChart.section5.parts.push(customerSatisfaction);
-
-        model.matureProfileChart.section6 = new SectionModel();
-        model.matureProfileChart.section6.name = NAMES6;
-        model.matureProfileChart.section6.parts.push(inventoryControl);
-        model.matureProfileChart.section6.parts.push(storage);
-
-        model.matureProfileChart.section7 = new SectionModel();
-        model.matureProfileChart.section7.name = NAMES7;
-        model.matureProfileChart.section7.parts.push(personal);
-        model.matureProfileChart.section7.parts.push(equipmentAndInfrastructure);
-        model.matureProfileChart.section7.parts.push(technology);
-        model.matureProfileChart.section7.parts.push(financialManageMent);
+        model.matureProfileChart.section1 = sectionModel1;
+        model.matureProfileChart.section2 = sectionModel2;
+        model.matureProfileChart.section3 = sectionModel3;
+        model.matureProfileChart.section4 = sectionModel4;
+        model.matureProfileChart.section5 = sectionModel5;
+        model.matureProfileChart.section6 = sectionModel6;
+        model.matureProfileChart.section7 = sectionModel7;
 
 
         // work with section 1 answers
