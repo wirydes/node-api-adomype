@@ -10,28 +10,28 @@ import { ChartFieldModel } from '../shared/models/chart.field.model';
 import { SectionModel } from '../shared/models/section.model';
 
 // section 1
-const NAMES1 = 'Gestionar la organizacion';
-const ENVIRONMENTANALYSIS = 'Analysis de entorno';
+const NAMES1 = 'Gestionar la organización';
+const ENVIRONMENTANALYSIS = 'Análisis de entorno';
 const ORGANIZATIONALDESICIONS = 'Toma de decisiones a nivel organizacional';
 const MONITORINGANDCONTROL = 'Monitoreo y control a nivel organizacional';
 // section 2
-const NAMES2 = 'Planear la prestacion y mejorar el servicio';
-const PROCESSPLANNING = 'Planeacion de los procesos';
-const FORMALIZATIONOFPROCESSES = 'Formalizacion de procesos';
+const NAMES2 = 'Planear la prestación y mejorar el servicio';
+const PROCESSPLANNING = 'Planeación de los procesos';
+const FORMALIZATIONOFPROCESSES = 'Formalización de procesos';
 const MONITORINGANDOPERATIONALCONTROL = 'Seguimiento y control operativo';
 // section 3
 const NAMES3 = 'Abastecer';
 const SHOPPINGRESULTS = 'Resultados de compras';
-const SELECTIONOFNEWSUPPLIERS = 'Seleccion de nuevos proveedores';
-const ACTUALSUPPLIERSEVALUATION = 'Evaluacion del desempeño de provedores actuales';
+const SELECTIONOFNEWSUPPLIERS = 'Selección de nuevos proveedores';
+const ACTUALSUPPLIERSEVALUATION = 'Evaluación del desempeño de provedores actuales';
 // section 4
 const NAMES4 = 'Producir y entregar el servicio';
 const PRODUCTIVEPROCESSRESULT = 'Resultados del proceso productivo';
 const DELIVERYOFVALUEPROCESS = 'Procesos para la entrega de valor';
 // section 5
 const NAMES5 = 'Gestionar mercadotecnia y servicio a cliente';
-const DEFINITIONOFVALUE = 'Definicoin de valor';
-const CUSTOMERSATISFACTION = 'Medicion de satisfaccion del cliente';
+const DEFINITIONOFVALUE = 'Definicion de valor';
+const CUSTOMERSATISFACTION = 'Medición de satisfaccion del cliente';
 // section 6
 const NAMES6 = 'Gestionar inventarios';
 const INVENTORYCONTROL = 'Control de inventarios';
@@ -40,8 +40,8 @@ const STORAGE = 'Almacenamiento';
 const NAMES7 = 'Gestionar recursos';
 const PERSONAL = 'Personal';
 const EQUIPMENTANDINFRASTRUCTURE = 'Mantenimiento de infraestructura y equipo';
-const TECHNOLOGY = 'Tecnologia';
-const FINANCIALMANAGEMENT = 'Apoyo a la gestion finnaciera';
+const TECHNOLOGY = 'Tecnología';
+const FINANCIALMANAGEMENT = 'Apoyo a la gestión financiera';
 
 export class SurveyService {
     private surveyRepository: SurveyRepository = new SurveyRepository();
