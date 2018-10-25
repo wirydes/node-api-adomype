@@ -203,7 +203,6 @@ export class SurveyService {
     private calculatePercentage(answers: AnswerModel[]): number {
         let value = 0;
         let counter = 0;
-
         answers.forEach(element => {
             if (element.value !== 0) {
                 value += element.value;
@@ -211,9 +210,11 @@ export class SurveyService {
             }
         });
 
-        value = value / counter;
+        if (!counter) {
+            return 0;
+        }
 
-        return value;
+        return value / counter;
     }
 
     private getPart(answers: AnswerModel[], part: number): AnswerModel[] {
