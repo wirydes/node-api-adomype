@@ -22,4 +22,14 @@ export class AdomypeController {
             res.status(500).send(err);
         });
     }
+
+    getSurveyChartByTokenInfo(req , res, next) {
+        new SurveyService().getSurveyAnswersByToken(req.params.token)
+        .then((data) => {
+            res.json(data);
+        })
+        .catch(err => {
+            res.status(500).send('Token invalido');
+        });
+    }
 }

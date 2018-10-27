@@ -67,6 +67,24 @@ export class SurveyService {
 
         return promise;
     }
+
+    getSurveyAnswersByToken(token: string): Promise<ChartsConfigModel> {
+        let model = new ChartsConfigModel();
+        let promise = new Promise<ChartsConfigModel>((resolve, rejects) => {
+            this.surveyRepository.getSurveyAnswersByToken(token)
+                .then((surveyAnswers) => {
+                    // logic of the formula
+                    this.sectionsLogicProcesor(surveyAnswers, model);
+                    resolve(model);
+                })
+                .catch((err) => {
+                    rejects(err);
+                });
+
+        });
+
+        return promise;
+    }
     sectionsLogicProcesor(surveyAnswers: AnswerModel[], model: ChartsConfigModel): void {
         let section1 = this.getSection(surveyAnswers, 1);
         let section2 = this.getSection(surveyAnswers, 2);
