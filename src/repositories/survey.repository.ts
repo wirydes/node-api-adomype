@@ -216,7 +216,6 @@ export class SurveyRepository {
             // orange green yellow red
             case 2:
             case 21:
-            case 22:
                 return this.orangeGreenYellowRed(key);
             case 3:
                 switch (key) {
@@ -424,6 +423,26 @@ export class SurveyRepository {
                         return 32;
                     case 'A9':
                         return 15;
+                }
+            // yellow orange green red
+            case 22:
+                switch (key) {
+                case 'A2':
+                    return 84;
+                case 'A3':
+                    return 70;
+                case 'A4':
+                    return 61;
+                case 'A5':
+                    return 45;
+                case 'A6':
+                    return 100;
+                case 'A7':
+                    return 90;
+                case 'A8':
+                    return 32;
+                case 'A9':
+                    return 15;
                 }
             case 25:
                 switch (key) {
