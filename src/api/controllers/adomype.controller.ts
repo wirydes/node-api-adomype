@@ -1,7 +1,7 @@
 import { SurveyService } from '../../services/survey.service';
 
 export class AdomypeController {
-    private surveyService: SurveyService = new SurveyService();
+    private surveyService = new SurveyService();
 
     getDropDownInfo(req , res) {
         new SurveyService().getSurveysDropDown()
