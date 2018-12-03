@@ -11,6 +11,6 @@ export class DataConfig {
         this.port = 3307;
         this.user = 'root';
         this.password = 'zxasqw12';
-        this.database = 'testdb';
+        this.database = 'testadomype';
     }
 }
