@@ -499,7 +499,7 @@ export class SurveyRepository {
                     case 'A8':
                         return 84;
                     case 'A9':
-                        return;
+                        return 70;
                 }
             case 29:
                 switch (key) {
